@@ -1,0 +1,40 @@
+{
+    "name": "voicenary",
+    "version": "1.0.0",
+    "description": "A modern language learning application with AI-powered conversation practice",
+    "main": "index.js",
+    "scripts": {
+        "install:all": "npm run install:backend && npm run install:frontend",
+        "install:backend": "cd backend && npm install",
+        "install:frontend": "cd project && npm install",
+        "start:backend": "cd backend && npm start",
+        "start:frontend": "cd project && npm run dev",
+        "dev:backend": "cd backend && npm start",
+        "dev:frontend": "cd project && npm run dev",
+        "dev": "node start-servers.js",
+        "test:integration": "node integration-test.js",
+        "verify": "node verify-setup.js",
+        "troubleshoot": "npm run verify && npm run test:integration",
+        "setup": "npm run install:all && echo \"✅ Dependencies installed. Don't forget to set up your .env file in the backend directory!\"",
+        "build": "cd project && npm run build",
+        "start": "cd backend && npm start",
+        "manual:backend": "echo \"Starting backend...\" && cd backend && npm start",
+        "manual:frontend": "echo \"Starting frontend...\" && cd project && npm run dev"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    },
+    "keywords": [
+        "language-learning",
+        "ai",
+        "react",
+        "nodejs",
+        "voice",
+        "education"
+    ],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^1.10.0"
+    }
+}

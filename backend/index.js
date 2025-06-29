@@ -13,7 +13,30 @@ console.log('ELEVENLABS_API_KEY:', process.env.ELEVENLABS_API_KEY ? '✔' : '❌
 console.log('VOICE_ID:', process.env.VOICE_ID ? '✔' : '❌');
 console.log('GEMINI_API_KEY:', process.env.GEMINI_API_KEY ? '✔' : '❌');
 
-app.use(cors());
+// Enhanced CORS configuration for dynamic ports
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://localhost:5175',
+    'http://localhost:5176',
+    'http://localhost:5177',
+    'http://localhost:3000',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:5174',
+    'http://127.0.0.1:5175',
+    'http://127.0.0.1:5176',
+    'http://127.0.0.1:5177',
+    'http://127.0.0.1:3000',
+    'http://localhost:4173', // Vite preview port
+    'http://127.0.0.1:4173'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  optionsSuccessStatus: 200
+}));
+
 app.use(express.json());
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -67,4 +90,32 @@ app.get('/', (req, res) => {
   res.send('Voicenary backend is running.');
 });
 
-app.listen(PORT, () => console.log(`🚀 Server listening on http://localhost:${PORT}`));
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    services: {
+      gemini: !!process.env.GEMINI_API_KEY,
+      elevenlabs: !!process.env.ELEVENLABS_API_KEY,
+      voice: !!process.env.VOICE_ID
+    }
+  });
+});
+
+// Status endpoint
+app.get('/status', (req, res) => {
+  res.json({
+    status: 'running',
+    port: PORT,
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server listening on http://localhost:${PORT}`);
+  console.log(`📡 CORS enabled for frontend communication`);
+  console.log(`🔗 Frontend should be running on http://localhost:5173`);
+  console.log(`📊 Health check available at http://localhost:${PORT}/health`);
+});
