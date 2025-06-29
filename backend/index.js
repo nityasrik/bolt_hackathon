@@ -43,6 +43,18 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const DEFAULT_VOICE_ID = process.env.VOICE_ID;
 const ELEVEN_KEY = process.env.ELEVENLABS_API_KEY;
 
+// 🎭 Voices endpoint
+app.get("/voices", (req, res) => {
+  const voiceIds = {
+    maria: "EXAVITQu4vr4xnSDxMaL",
+    pierre: "VR6AewLTigWG4xSOukaG", 
+    akiko: "XrExE9yKIg1WjnnlVkGX",
+    hans: "yoZ06aMxZJJ28mfd3POQ",
+    elena: "ThT5KcBeYPX3keUQqHPh"
+  };
+  res.json(voiceIds);
+});
+
 // 🧑‍🏫 Chat endpoint
 app.post("/chat", async (req, res) => {
   const { message, context = "" } = req.body;
