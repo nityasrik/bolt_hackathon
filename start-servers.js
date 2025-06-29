@@ -157,7 +157,7 @@ async function startServers() {
 
         for (const port of frontendPorts) {
             try {
-                const ready = await healthCheck(`http://localhost:${port}`, 3, 1000);
+                const ready = await healthCheck(`http://localhost:${port}`, 15, 2000);
                 if (ready) {
                     frontendReady = true;
                     console.log(`✅ Frontend is ready on port ${port}!`);
@@ -206,4 +206,4 @@ async function startServers() {
 }
 
 // Start the servers
-startServers(); 
+startServers();
