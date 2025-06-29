@@ -1,6 +1,13 @@
 # Voicenary - AI-Powered Language Learning App
 
 A modern language learning application with AI-powered conversation practice, featuring real-time voice interaction and personalized learning experiences.
+Voicenary lets you learn new languages by chatting with AI-powered tutors, each with their own personality and authentic voice. You can listen, speak, and get real-time feedback, making language learning fun and interactive
+
+## How it Works
+When you start a lesson, you’ll see a prompt from your AI tutor.
+You can click “Play Audio” to hear the phrase spoken in the tutor’s real voice, thanks to ElevenLabs.
+⁠You can practice speaking, and the app gives you instant feedback using AI.
+⁠All communication between the frontend and backend is seamless, with health checks and error handling to ensure a smooth experience.
 
 ## 🚀 Features
 
