@@ -89,6 +89,41 @@ If you prefer to set up components individually:
    npm run dev
    ```
 
+## 🚀 Deployment
+
+### Quick Deployment
+
+**For Windows:**
+```bash
+deploy.bat
+```
+
+**For Mac/Linux:**
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+
+### Manual Deployment
+
+1. **Deploy Backend** (choose one):
+   - **Heroku**: `cd backend && heroku create && git push heroku main`
+   - **Render**: Connect GitHub repo at [render.com](https://render.com)
+   - **Railway**: Connect GitHub repo at [railway.app](https://railway.app)
+
+2. **Deploy Frontend to Netlify**:
+   - Go to [netlify.com](https://netlify.com)
+   - Drag and drop `project/dist` folder
+   - Or connect your GitHub repository
+
+3. **Configure Environment**:
+   - Set `VITE_API_URL` to your backend URL in Netlify
+   - Set API keys in your backend platform
+
+### Detailed Deployment Guide
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for comprehensive deployment instructions.
+
 ## 🔧 Configuration
 
 ### Backend Environment Variables
@@ -145,6 +180,15 @@ npm run verify
 
 # Build for production
 npm run build
+
+# Deploy frontend
+npm run deploy:frontend
+
+# Deploy backend
+npm run deploy:backend
+
+# Check deployment readiness
+npm run deploy:check
 ```
 
 ### Backend Scripts
@@ -164,86 +208,39 @@ npm run build      # Build for production
 npm run preview    # Preview production build
 ```
 
-## 🔌 API Integration
+## 🧪 Testing
 
-### Backend Endpoints
-
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/` | GET | Root endpoint with server info |
-| `/health` | GET | Health check with service status |
-| `/status` | GET | Detailed server status |
-| `/chat` | POST | AI conversation endpoint |
-| `/speak` | POST | Text-to-speech endpoint |
-| `/voices` | GET | Available voice options |
-
-### Frontend-Backend Communication
-
-The frontend communicates with the backend through:
-
-1. **API Service Layer** (`project/src/services/api.js`)
-   - Centralized API communication
-   - Error handling and retry logic
-   - Connection monitoring
-
-2. **Connection Status Component** (`project/src/components/ConnectionStatus.jsx`)
-   - Real-time backend status monitoring
-   - Automatic reconnection attempts
-   - User-friendly error messages
-
-3. **Vite Proxy Configuration** (`project/vite.config.js`)
-   - Development proxy for seamless API calls
-   - CORS handling
-   - Request/response logging
-
-## 🧪 Testing Integration
-
-### Run Integration Tests
+### Integration Tests
 
 ```bash
 npm run test:integration
 ```
 
-This will test:
-- Backend health and status
-- API endpoint functionality
-- Frontend accessibility
-- Chat and TTS functionality
-- Error handling
-- Voice endpoints
+### Setup Verification
 
-### Manual Testing
+```bash
+npm run verify
+```
 
-1. **Backend Health Check:**
-   ```bash
-   curl http://localhost:5000/health
-   ```
+### Troubleshooting
 
-2. **Frontend Access:**
-   ```bash
-   curl http://localhost:5173
-   ```
+```bash
+npm run troubleshoot
+```
 
-3. **API Endpoint Test:**
-   ```bash
-   curl -X POST http://localhost:5000/chat \
-     -H "Content-Type: application/json" \
-     -d '{"message": "Hello", "context": "test"}'
-   ```
-
-## 🔍 Troubleshooting
+## 🚨 Troubleshooting
 
 ### Common Issues
 
 1. **Backend not starting:**
    - Check if port 5000 is available
-   - Verify API keys in `backend/.env`
-   - Check Node.js version (v16+)
+   - Verify API keys in `.env` file
+   - Check Node.js version (v16+ required)
 
 2. **Frontend not connecting:**
    - Ensure backend is running on port 5000
    - Check CORS configuration
-   - Verify `VITE_API_URL` in frontend `.env`
+   - Verify API URL in frontend environment
 
 3. **Audio not working:**
    - Check ElevenLabs API key

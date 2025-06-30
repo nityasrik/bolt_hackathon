@@ -17,9 +17,14 @@
         "troubleshoot": "npm run verify && npm run test:integration",
         "setup": "npm run install:all && echo \"✅ Dependencies installed. Don't forget to set up your .env file in the backend directory!\"",
         "build": "cd project && npm run build",
+        "build:frontend": "cd project && npm run build",
+        "preview": "cd project && npm run preview",
         "start": "cd backend && npm start",
         "manual:backend": "echo \"Starting backend...\" && cd backend && npm start",
-        "manual:frontend": "echo \"Starting frontend...\" && cd project && npm run dev"
+        "manual:frontend": "echo \"Starting frontend...\" && cd project && npm run dev",
+        "deploy:frontend": "cd project && npm run build && echo \"✅ Frontend built successfully. Deploy the 'project/dist' folder to Netlify.\"",
+        "deploy:backend": "echo \"✅ Backend ready for deployment. Use the 'backend' folder for Heroku/Render/Railway.\"",
+        "deploy:check": "npm run verify && npm run build:frontend && echo \"✅ Ready for deployment!\""
     },
     "devDependencies": {
         "concurrently": "^8.2.2"
