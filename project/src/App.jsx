@@ -10,6 +10,7 @@ import Feedback from './components/Feedback';
 import Chat from './components/Chat';
 import ConnectionStatus from './components/ConnectionStatus';
 import { integrationUtils } from './services/api';
+import boltBadge from '/bolt-badge.png';
 
 // Component to scroll to top on route change
 function ScrollToTop() {
@@ -69,6 +70,30 @@ function App() {
           <Route path="/chat/:character" element={<Chat />} />
         </Routes>
       </div>
+
+      {/* Bolt.new Badge - now in the top right, larger size */}
+      <a
+        href="https://bolt.new/"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          position: 'fixed',
+          top: '2rem',
+          right: '2rem',
+          zIndex: 1000,
+          width: '90px',
+          height: '90px',
+          display: 'block',
+        }}
+        className="bolt-badge bolt-badge-top"
+        aria-label="Powered by Bolt.new"
+      >
+        <img
+          src={boltBadge}
+          alt="Powered by Bolt.new"
+          style={{ width: '100%', height: 'auto', maxWidth: '120px', minWidth: '50px' }}
+        />
+      </a>
     </Router>
   );
 }
