@@ -1,6 +1,5 @@
 # 🗣️ **Voicenary** – Talk to AI Characters. Learn Languages the Fun Way!
 
-<<<<<<< HEAD
 A modern language learning application with AI-powered conversation practice, featuring real-time voice interaction and personalized learning experiences.
 
 ## 🚀 Features
