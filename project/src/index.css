@@ -45,9 +45,9 @@ html {
 }
 
 .bolt-badge img {
-  width: 70px;
-  min-width: 40px;
-  max-width: 100px;
+  width: 90px;
+  min-width: 50px;
+  max-width: 120px;
   height: auto;
   transition: transform 0.2s;
 }
@@ -63,6 +63,6 @@ html {
   }
 
   .bolt-badge img {
-    width: 50px;
+    width: 65px;
   }
 }
